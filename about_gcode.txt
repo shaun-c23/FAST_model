@@ -1,0 +1,64 @@
+GCODE
+
+The main code file is main.cpp which requires the user to include the gcode file (examples included), beam information, calculation points and type, etc.
+
+It is important that the processed gcode file is created with the attached Python program: gcode.py
+
+Here, the gcode uses current and voltage to calculate the power (relevant for EBAM processes) and G1 commands for movement. Example of raw gcode with various commands is shown below:
+
+ G0 X5 Y-2.5 Z0 L 0
+(Power on)
+ L 1.2
+ M3 
+ G4 F 1.5
+(Power off)
+ M5 
+ G0 X2.5 Y10 Z0 L 0
+(Power on)
+ L 1.2
+ M3 
+ G4 F 1.5
+(Power off)
+ M5
+ G0 X10 Y10 Z0 L 0
+ G4 F 5.0
+(Power on)
+ L 1.2
+ M3 
+ G4 F 1.5
+(Power off)
+ M5
+ G4 F 5.0
+(End)
+
+Summary of gcode commands:
+L - beam current (in mA)
+F - feed rate
+G0 - rapid traverse (no power)
+G1 - linear move (F represented in mm/min)
+G4 - dwell (F represented by seconds)
+M3 - power on
+M5 - power off
+
+Beam voltage is defined by default as 100kV but can be changed in gcode.py
+
+The raw gcode needs to be processed to be used in this code with the gcode.py file and is put into the following format:
+
+t_1, x_1, vx_1, y_1 ,vy_1 , z_1 , p_1
+t_2, x_2, vx_2, y_2 ,vy_2 , z_2 , p_2
+.
+.
+.
+t_n, x_n, vx_n, y_n ,vy_n , z_n , p_n
+
+Where t is the time, x, y and z are the spatial positions, vx and vy are the beam velocities in the x and y directions, respectively, and p is the beam power.
+
+implemented in this way:
+
+xb_n = x_n-1 + (vx_n)*(tend-t_n-1)
+
+Where xb is the beam position in the x direction and tend is the upper integration limit (current timestep) in the model.
+
+For a given row in the processed gcode, it take t seconds to get to the x and y positions
+
+In the model, to get to x_n and y_n, we use the starting position from the previous position at x_n-1 and y_n-1at t_n-1 and based on vx_n, vy_n and p_n
