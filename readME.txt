@@ -2,7 +2,7 @@ ABOUT THIS CODE PACKAGE
 
 This code is written in c++ and is best run using g++ compiler with the following dependencies:
 - Apple clang version 15.0.0 (clang-1500.1.0.2.5)
-- enusre openmp is installed
+- ensure openmp is installed
 - running version c++17
 
 There are a number of files located in this package and their descriptions are below:
