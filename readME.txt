@@ -24,7 +24,7 @@ There are also a number of Python file for pre- and post-processing:
 
 HOW TO RUN CODE
 
-It is important that the processed gcode file is created with the attached Python program: gcode.py. See the “about_gcode.txt” file for more information on this.
+It is important that the processed gcode file is created with the attached Python program: gcode_interface.py. See the “about_gcode.txt” file for more information on this.
 
 Beam information, material, initial temperature, gcodefile, etc., can all be changed in main.cpp file before running.
 
