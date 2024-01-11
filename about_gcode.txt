@@ -51,7 +51,7 @@ t_2, x_2, vx_2, y_2 ,vy_2 , z_2 , p_2
 .
 t_n, x_n, vx_n, y_n ,vy_n , z_n , p_n
 
-Where t is the time, x, y and z are the spatial positions, vx and vy are the beam velocities in the x and y directions, respectively, and p is the beam power.
+Where t is the time, x, y and z are the spatial positions, vx and vy are the beam velocities in the x and y directions, respectively,in mm/s and p is the beam power in mW.
 
 implemented in this way:
 
