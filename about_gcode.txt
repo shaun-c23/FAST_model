@@ -2,7 +2,7 @@ GCODE
 
 The main code file is main.cpp which requires the user to include the gcode file (examples included), beam information, calculation points and type, etc.
 
-It is important that the processed gcode file is created with the attached Python program: gcode.py
+It is important that the processed gcode file is created with the attached Python program: gcode_interface.py located within the gcode folder. Example gcode and processed gcode can be found within the gcode folder. The processed gcode with have "laser_pos" in the name and will be in a different form than the raw gcode.
 
 Here, the gcode uses current and voltage to calculate the power (relevant for EBAM processes) and G1 commands for movement. Example of raw gcode with various commands is shown below:
 
