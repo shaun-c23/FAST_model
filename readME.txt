@@ -17,7 +17,7 @@ There are a number of files located in this package and their descriptions are b
 	- runcode.h: core code which computes the thermal history
 	- main.cpp: main code to run the program and define variables and calculation points
 
-There are also a number of Python file for pre- and post-processing:
+There are also a number of Python files for pre- and post-processing:
 	- gcode_interface.py: used to process gcode
 	- gcode_library.py: libraries to process gcode
 	- process.py: post processing for data
