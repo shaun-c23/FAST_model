@@ -54,5 +54,5 @@ Where time1 is the tilmestep for the csv file containing the calculation points 
 
 DATA VISUALIZATION
 
-Software such as paraview or a Python program can be used to visualize the data. Please see example Python code (readData.py) to visualize the data or convert to a file readable for paraview.
+Software such as paraview or a Python program can be used to visualize the data. Please see example Python code (readData.py) to visualize the data or you can convert the data use for visualization software such as paraview.
 
