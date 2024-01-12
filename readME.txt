@@ -20,7 +20,7 @@ There are a number of files located in this package and their descriptions are b
 There are also a number of Python files for pre- and post-processing:
 	- gcode_interface.py: used to process gcode
 	- gcode_library.py: libraries to process gcode
-	- process.py: post processing for data
+	- view_data.ipynb: post processing for data
 
 HOW TO RUN CODE
 
