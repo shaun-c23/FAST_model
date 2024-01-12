@@ -26,7 +26,9 @@ HOW TO RUN CODE
 
 It is important that the processed gcode file is created with the attached Python program: gcode_interface.py. See the “about_gcode.txt” file for more information on this.
 
-Beam information, material, initial temperature, gcodefile, etc., can all be changed in main.cpp file before running.
+Download or clone the repository and open a terminal window to the src directory.
+
+Beam information, material, initial temperature, gcodefile, etc., can all be changed in src/main.cpp file before running.
 
 To run the code, assuming the dependencies are installed, the executable can be created with the following on unix systems or equivalently:
 
