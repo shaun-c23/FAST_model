@@ -62,15 +62,15 @@ int main(int argc, char* argv[]){
     4. "points" - select points but cannot iclude radiation since the meltpool is not modelled (can combine points with melt pool to include radiaiton effects)
     */
 
-    string type = "meltpool";
+    string type = "dynamic";
 
     vector < vector<double> > domain{};
     vector <double> MPparams;
 
     //meshed domain x-y is surface, z is depth
     if (type == "dynamic" or "static"){
-        int nx = 150; //number of nodes along x
-        int ny = 150; //number of nodes along y
+        int nx = 75; //number of nodes along x
+        int ny = 75; //number of nodes along y
         int nz =  1; //number of nodes along z
         double x1 = -2.5;//.5; //specify x lower bound
         double x2 = 12.5;//12.5; //specify x upper bound
