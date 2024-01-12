@@ -51,7 +51,7 @@ T2, melted2, x2, y2, z2
 .
 Tn, meltedn, xn, yn, zn
 
-Where time1 is the tilmestep for the csv file containing the calculation points for the domain, T is the temperature in ˚C, melted is if the node has exceed the solidus point (1 for melted, 0 for unmelted) and, x,y, and z, are the spatial coordinates in mm.
+Where time1 is the tilmestep in s for the csv file containing the calculation points for the domain, T is the temperature in ˚C, melted is if the node has exceed the solidus point (1 for melted, 0 for unmelted) and, x,y, and z, are the spatial coordinates in mm.
 
 
 DATA VISUALIZATION
