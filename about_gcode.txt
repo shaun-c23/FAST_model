@@ -40,9 +40,9 @@ G4 - dwell (F represented by seconds)
 M3 - power on
 M5 - power off
 
-Beam voltage is defined by default as 100kV but can be changed in gcode.py
+Beam voltage is defined by default as 100kV but can be changed in gcode_interface.py
 
-The raw gcode needs to be processed to be used in this code with the gcode.py file and is put into the following format:
+The raw gcode needs to be processed to be used in this code with the gcode_interface.py file and is put into the following format:
 
 t_1, x_1, vx_1, y_1 ,vy_1 , z_1 , p_1
 t_2, x_2, vx_2, y_2 ,vy_2 , z_2 , p_2
