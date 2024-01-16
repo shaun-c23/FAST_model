@@ -1,36 +1,8 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 """
-//This software has been authored by Shaun Cooke with The University of British Columbia - Vancouver. 
-//Research was supervised by Dr. Chad W. Sinclair and Dr. Daan M. Maijer with support by the National Sciences and Engineering Research Council of Canada (NSERC)
-/*Copyright 2024, Shaun Cooke, All rights reserved.
-*
-* All Rights Reserved
-*
-* Authors: Shaun Cooke <src@student.ubc.ca>
-*
-* Redistribtion and use in source and binary forms, with or without
-* modification, are permitted provided that the following conditions are met:
-*
-* 1. Redistributions of source code must retain the above copyright notice,
-*	 this list of conditions and the following disclaimer.
-* 2. Redistributions in binary form must reproduce the above copyright
-*    notice, this list of conditions and the following disclaimer in the
-*    documentation and/or other materials provided with the distribution.
-* 3. Neither the name of the project/files nor the names of its
-*    contributors may be used to endorse or promote products derived from
-*    this software without specific prior written permission.
-*
-* THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-* AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-* IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-* ARE DISCLAIMED.IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
-* LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-* CONSEQUENTIAL DAMAGES(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-* SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-* INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-* CONTRACT, STRICT LIABILITY, OR TORT(INCLUDING NEGLIGENCE OR OTHERWISE)
-* ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
-* POSSIBILITY OF SUCH DAMAGE.
-*/
+@author: Shaun
+
 """
 
 import re
@@ -41,23 +13,28 @@ import matplotlib.pyplot as plt
 
 #---------------------read Gcode----------------------------------------------
 #-------laser coordinate function definition to call from anywhere-------------
+#make input for units so it converts to m only when needed
 
 def bare_numpy_mat(mat_v, mat_u):
    return np.sqrt(np.sum((mat_v - mat_u) ** 2))
 
+'''LEAM can move up to 10cm in 250 us --> 400000 mm/s --> 24e6 mm/min'''
+#travspeed = 24e6
 def get_laser_coords(path,travspeed):
-  
+    #path_folder = "/Users/sc/Desktop/rosen_files/FE_models/qa/layer/gcode/"
+    #path = path_folder+"hatch_layer_2.txt"
     gcode_data = {
         'G': [],
         'X': [],
         'Y': [],
+        'Z': [],
         'L': [],
         'F': [],
         'M': []
                  }
 
     ind = 0
-    syms = ['(','G', 'X', 'Y', 'L', 'F', 'M']
+    syms = ['(','G', 'X', 'Y','Z', 'L', 'F', 'M']
     with open(path) as gcode:
         for line in gcode:
             ind+=1
@@ -101,10 +78,11 @@ def get_laser_coords(path,travspeed):
     g = gcode_data['G'][g_ind:]
     x = gcode_data['X'][g_ind:]
     y = gcode_data['Y'][g_ind:]
+    z = gcode_data['Z'][g_ind:]
     l = gcode_data['L'][g_ind:]
     f = gcode_data['F'][g_ind:]
     m = gcode_data['M'][g_ind:]
-
+    
     index = 0
     for index in range(len(g)):
         if  g[index] == 'G0' and f[index] == '?':
@@ -112,18 +90,24 @@ def get_laser_coords(path,travspeed):
 
         if g[index] == '?' and m[index] != '?':
             g[index] = m[index]
-    
         if x[index] == '?':
             x[index] = x[index-1]
         if y[index] == '?':
             y[index] = y[index-1]
-        if l[index] == '?':
+        if z[index] == '?':
+            z[index] = z[index-1]
+        if l[index] == '?' and index == 0:
+            l[index] = '0'
+            
+        elif l[index] == '?':
             l[index] = l[index-1]
+            
         if f[index] == '?':
             f[index] = f[index-1]
     
         x[index] = x[index].strip('X')
         y[index] = y[index].strip('Y')
+        z[index] = z[index].strip('Z')
         l[index] = l[index].strip('L')
         f[index] = f[index].strip('F')
 
@@ -133,6 +117,7 @@ def get_laser_coords(path,travspeed):
             g.pop(index) 
             x.pop(index)
             y.pop(index) 
+            z.pop(index) 
             l.pop(index) 
             f.pop(index) 
             m.pop(index) 
@@ -140,9 +125,10 @@ def get_laser_coords(path,travspeed):
 
         index+=1
 
-    gcode_ = pd.DataFrame(zip(g,x,y,l,f),columns = ['C','X','Y','L','F'])
+    gcode_ = pd.DataFrame(zip(g,x,y,z,l,f),columns = ['C','X','Y','Z','L','F'])
     gcode_['X'] = gcode_['X'].astype(float)
     gcode_['Y'] = gcode_['Y'].astype(float)
+    gcode_['Z'] = gcode_['Z'].astype(float)
     gcode_['L'] = gcode_['L'].astype(float)
     gcode_['F'] = gcode_['F'].astype(float)
     
@@ -176,6 +162,21 @@ def get_laser_coords(path,travspeed):
         
     return gcode_
 
+
+#------------------------Gcode position discretization array-------------------
+#chops up g-code command into x-y-z position of laser depending on timestep
+#and scanning speed
+
+
+x = 0
+y = 0
+import sys
+
+timestep = 0.005 #[s]
+elsize = 0.05 #element size [mm]
+#gcode_coords = []
+start_line = 0
+# sys
 def param_eqn(gcode_coords,start_line,beamV,dt):
     
     x=[]
@@ -198,6 +199,11 @@ def param_eqn(gcode_coords,start_line,beamV,dt):
 
     for row_gcode in np.arange(start_line,len(gcode_coords)): #len(gcode_coords)
 
+        #row_gcode = 0
+        #if round(gcode_coords['x'][row_gcode],3) != round(gcode_coords['x'][row_gcode-1],3) or \
+        #gcode_coords['y'][row_gcode] != gcode_coords['y'][row_gcode-1]:
+
+            
         if gcode_coords['C'][row_gcode] == 'G0' or gcode_coords['C'][row_gcode] == 'G1':
             if gcode_coords['C'][row_gcode] == 'G1':
                 power = gcode_coords['L'][row_gcode]*beamV
@@ -250,26 +256,28 @@ def param_eqn(gcode_coords,start_line,beamV,dt):
 
                 x.append(gcode_coords['X'][row_gcode])
                 y.append(gcode_coords['Y'][row_gcode])
-                z.append(0)
+                z.append(gcode_coords['Z'][row_gcode])
                 t.append(d_i/speed + t[-1])
                 vxi.append(vx)
                 vyi.append(vy)
                 p.append(power*1000)
+
         
         elif gcode_coords['C'][row_gcode] == 'G4':
 
             x.append(gcode_coords['X'][row_gcode])
             y.append(gcode_coords['Y'][row_gcode])
-            z.append(0)
+            z.append(gcode_coords['Z'][row_gcode])
             t.append(gcode_coords['F'][row_gcode] + t[-1])
             vxi.append(0)
             vyi.append(0)
             p.append(p[-1])
+
             
         elif gcode_coords['C'][row_gcode] == 'M3':
             x.append(x[-1])
             y.append(y[-1])
-            z.append(0)
+            z.append(z[-1])
             t.append(t[-1]+dt)
             vxi.append(vxi[-1])
             vyi.append(vyi[-1])
@@ -278,7 +286,7 @@ def param_eqn(gcode_coords,start_line,beamV,dt):
         elif gcode_coords['C'][row_gcode] == 'M5':
             x.append(x[-1])
             y.append(y[-1])
-            z.append(0)
+            z.append(z[-1])
             t.append(t[-1]+dt)
             vxi.append(vxi[-1])
             vyi.append(vyi[-1])
