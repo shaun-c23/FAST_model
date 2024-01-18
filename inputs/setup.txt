@@ -1,0 +1,10 @@
+#Model Setup File
+
+Config = inputs/config.txt
+Material = inputs/materials/Ti64.txt
+Domain = inputs/domain.txt
+Meltpool = inputs/meltpool_points.txt
+BeamPath = gcode/gcodefiles/triangle_laser_pos.txt
+
+Meshtype = dynamic
+Meltpooldepth = false

@@ -1,0 +1,16 @@
+#Model Setup File
+
+TimeStep = 0.01
+CoolingTime = 0
+
+
+InitialTemp = 250
+AmbientTemp = 30
+
+
+Efficiency = 0.45
+Sigma = 0.145
+
+MaxThreads = 6
+
+
