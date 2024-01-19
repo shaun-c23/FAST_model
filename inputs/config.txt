@@ -1,0 +1,17 @@
+#Model Setup File
+
+TimeStep = 0.002
+CoolingTime = 0
+
+
+InitialTemp = 250
+AmbientTemp = 30
+
+
+Efficiency = 0.72
+Sigma = 0.145
+BeamDepth = 0.1
+
+MaxThreads = 6
+
+
