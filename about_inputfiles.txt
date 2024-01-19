@@ -13,9 +13,11 @@ Material = inputs/materials/Ti64.txt #path to material file located in the mater
 Domain = inputs/domain.txt #path to domain file
 Meltpool = inputs/meltpool_points.txt #path to meltpool calculation points file
 BeamPath = gcode/gcodefiles/la_pos_EBAM_3.txt #path to beam file located in gcode > gcodefiles folder
+BC = inputs/boundaryconditions.txt #path to boundary condition file
 
 Meshtype = dynamic #specifies mesh type
 Meltpooldepth = false #specifies if you want to model the melt pool depth (automatically "true" if you set z1 != z2 in the domain.txt file and dont choose "meltpool" as mesh type)
+BoundaryConditions = false #false for semi-infinite, true to apply boundary conditions (see boundaryconditions.txt)
 
 config.txt:
 #Model Setup File
