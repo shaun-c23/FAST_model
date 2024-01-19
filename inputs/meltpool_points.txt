@@ -1,5 +1,0 @@
-#Melt pool calculation point parameters
-
-boxsize = 1
-point_space = 0.075
-depth_space = 0.025
