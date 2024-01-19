@@ -35,8 +35,8 @@ Beam information, material, initial temperature, gcodefile, etc., can all be cha
 
 Running on Windows:
 
+See also for info on using with Vscode:
 https://code.visualstudio.com/docs/cpp/config-mingw
-
 
 Install Msys2
 
