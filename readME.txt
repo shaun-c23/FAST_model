@@ -22,6 +22,8 @@ There are also a number of Python files for pre- and post-processing:
 	- gcode_library.py: libraries to process gcode
 	- view_data.ipynb: post processing for data
 
+Input files located in the input folder can be chnaged in order to specify the material, beam parameters, trajectory, etc. without having to recompile the code. See the about_inputfiles.txt for more information.
+
 HOW TO RUN CODE
 
 
