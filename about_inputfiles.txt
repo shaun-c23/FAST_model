@@ -25,13 +25,12 @@ config.txt:
 TimeStep = 0.01 #timstep frequency in s
 CoolingTime = 0 #extra or time in s to allow to cool beyond time in gcode
 
-
 InitialTemp = 250 #T0 or preheat temperature in ˚C
 AmbientTemp = 30 #ambient temperature for radiation in ˚C
 
-
 Efficiency = 0.72 #beam power absorption efficiency
 Sigma = 0.145 #beam spot size in mm
+BeamDepth = 0 #beam penetration depth in mm
 
 MaxThreads = 6 #number of CPU cores to run on
 
