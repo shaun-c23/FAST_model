@@ -1,1 +1,78 @@
+There are several input files located in the input folder necessary for the model.
+
+setup.txt:
+#Model Setup File
+
+#Meshtype information:
+    1. "static" - static grid of points (cumputationally unefficient and requires fine mesh in melt pool for accruate radiaiton)
+    2. "dynamic" - static set of points dynmaically refined around melt pool
+    3. "meltpool" - dynamic set of point just in and around the melt pool area
+
+Config = inputs/config.txt #path to config file
+Material = inputs/materials/Ti64.txt #path to material file located in the materials folder
+Domain = inputs/domain.txt #path to domain file
+Meltpool = inputs/meltpool_points.txt #path to meltpool calculation points file
+BeamPath = gcode/gcodefiles/la_pos_EBAM_3.txt #path to beam file located in gcode > gcodefiles folder
+
+Meshtype = dynamic #specifies mesh type
+Meltpooldepth = false #specifies if you want to model the melt pool depth (automatically "true" if you set z1 != z2 in the domain.txt file and dont choose "meltpool" as mesh type)
+
+config.txt:
+#Model Setup File
+
+TimeStep = 0.01 #timstep frequency in s
+CoolingTime = 0 #extra or time in s to allow to cool beyond time in gcode
+
+
+InitialTemp = 250 #T0 or preheat temperature in ˚C
+AmbientTemp = 30 #ambient temperature for radiation in ˚C
+
+
+Efficiency = 0.72 #beam power absorption efficiency
+Sigma = 0.145 #beam spot size in mm
+
+MaxThreads = 6 #number of CPU cores to run on
+
+domain.txt:
+# Domain Configuration File
+If "meltpool" selected for Meshtype in setup.txt, these values will not matter. Only used for "dynamic" or "static".
+
+# Grid dimensions
+nx = 75 #number of nodes in x
+ny = 25 #number of nodes in y
+nz = 1 #number of nodes in z
+
+# Domain boundaries in mm
+x1 = -15 #x lower bound
+x2 = -5 #x upper bound
+y1 = 3 #y lower bound
+y2 = 7 #y upper bound
+z1 = 0 #z lower bound
+z2 = 0 #z upper bound
+
+meltpoolpoints.txt:
+#Melt pool calculation point parameters
+
+boxsize = 1 #default box size, can scale up or down to make larger or smaller, size is updated based on previous meltpool but depending on material may need different size
+point_space = 0.075 #point spacing for surface
+depth_space = 0.025 #point spacing for depth if "true" selected for Meltpooldepth in setup.txt
+
+materials>Ti64.txt:
+#Material property data for Ti-6Al-4V
+
+ktemps = {35.0, 100.0, 200.0, 300.0, 400.0, 500.0, 600.0, 700.0, 800.0, 900.0, 995.0, 1005.0, 1100.0, 1200.0, 1300.0, 1400.0, 1500.0, 1600, 1610, 1620, 1625}
+    
+k = {7.0, 7.45, 8.75, 10.15, 11.35, 12.6, 14.18, 15.47, 17.55, 19.06, 19.41, 19.46, 21, 22.9, 23.7, 24.6, 25.8, 27.06, 27.6, 30.81, 32.8}
+    
+ctemps = {35, 400, 500, 700, 800, 900, 995, 1005, 1100, 1200, 1300, 1400, 1500, 1600, 1610, 1620, 1625}
+    
+c = {546e6, 629e6, 651e6, 684e6, 691.3e6, 677.4e6, 644.5e6, 642.7e6, 660e6, 678e6, 696e6, 714e6, 732e6, 750.7e6, 758.5e6, 803.2e6, 831e6} #specific heat values in 
+    
+rho = {4.2e-09} #density for material
+    
+emissivity = {0.7} #emissivity value for material
+    
+meltT = {1625} #liquidus temperature for material
+
+
 
