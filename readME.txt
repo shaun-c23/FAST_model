@@ -24,15 +24,58 @@ There are also a number of Python files for pre- and post-processing:
 
 HOW TO RUN CODE
 
-It is important that the processed gcode file is created with the attached Python program: gcode_interface.py. See the “about_gcode.txt” file for more information on this.
 
-Download or clone the repository and open a terminal window to the src directory.
+It is important that the processed gcode file is created with the attached Python program: gcode.py. See the “about_gcode.txt” file for more information on this.
 
-Beam information, material, initial temperature, gcodefile, etc., can all be changed in src/main.cpp file before running.
+Beam information, material, initial temperature, gcodefile, etc., can all be changed in main.cpp file before running.
+
+**ensure you have version 10 or higher for gcc compiler with openmp installed**
+
+Running on Windows:
+
+https://code.visualstudio.com/docs/cpp/config-mingw
+
+
+Install Msys2
+
+Then run the following to install the latest gcc compiler:
+
+pacman -S mingw-w64-ucrt-x86_64-gcc
+
+pacman -S mingw-w64-x86_64-openmp
+
+Add to your environment variables:
+
+C:\msys64\ucrt64\bin
+
+and
+
+C:\mingw64\bin
+
+To run:
+
+g++ -std=c++17 -fopenmp main.cpp -o main
+
+After the executable is created, the program can be run with following inputs:
+
+main.exe
+
+
+For Linux and Mac, it’s easier to get the latest gcc compilers through the terminal command prompts and get setup.
 
 To run the code, assuming the dependencies are installed, the executable can be created with the following on unix systems or equivalently:
 
-g++ -std=c++17 -Xpreprocessor -fopenmp main.cpp -o main -lomp
+Mac:
+
+g++ -std=c++17 -Xpreprocessor -fopenmp main.cpp -o main -lomp 
+
+After the executable is created, the program can be run with following inputs:
+
+./main
+
+Linux:
+
+g++ -std=c++17 -fopenmp main.cpp -o main -lomp 
 
 After the executable is created, the program can be run with following inputs:
 
