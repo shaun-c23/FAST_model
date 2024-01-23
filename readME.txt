@@ -1,3 +1,5 @@
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 ABOUT THIS CODE PACKAGE
 
 There are a number of files located in this package and their descriptions are below:
@@ -19,6 +21,8 @@ There are also a number of Python files for pre- and post-processing:
 
 Input files located in the input folder can be chnaged in order to specify the material, beam parameters, trajectory, etc. without having to recompile the code. See the about_inputfiles.txt for more information.
 
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 HOW TO RUN CODE
 
 It is important that the processed gcode file is created with the attached Python program: gcode.py. See the “about_gcode.txt” file for more information on this.
@@ -26,6 +30,8 @@ It is important that the processed gcode file is created with the attached Pytho
 Beam information, material, initial temperature, gcodefile, etc., can all be changed in main.cpp file before running.
 
 **ensure you have version 10 or higher for gcc compiler with openmp installed**
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 Running on Windows:
 
@@ -56,12 +62,10 @@ After the executable is created, the program can be run with following inputs:
 
 main.exe
 
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-For Linux and Mac, it’s easier to get the latest gcc compilers through the terminal command prompts and get setup.
+Running on Mac:
 
-To run the code, assuming the dependencies are installed, the executable can be created with the following on unix systems or equivalently.
-
-Mac:
 - Apple clang version 15.0.0 (clang-1500.1.0.2.5) (or equivalent with latest gcc compiler) with openmp support
 
 compile the code:
@@ -72,7 +76,9 @@ After the executable is created, the program can be run with following inputs:
 
 ./main
 
-Linux:
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Running on Linux:
 
 Similarily, ensure the latest gcc compiler is installed with openmp support.
 
@@ -84,6 +90,7 @@ After the executable is created, the program can be run with following inputs:
 
 ./main
 
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 OUTPUT DATA
 
@@ -100,8 +107,10 @@ Tn, meltedn, xn, yn, zn
 
 Where time1 is the tilmestep in s for the csv file containing the calculation points for the domain, T is the temperature in ˚C, melted is if the node has exceed the solidus point (1 for melted, 0 for unmelted) and, x,y, and z, are the spatial coordinates in mm.
 
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 DATA VISUALIZATION
 
 Software such as paraview or a Python program can be used to visualize the data. Please see example Python code (view_data.py) to visualize the data or you can convert the data use for visualization software such as paraview.
 
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
