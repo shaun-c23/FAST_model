@@ -1,3 +1,5 @@
+--------------------------------------------------------------------------------------------------------------------------------
+
 GCODE
 
 The main code file is main.cpp which requires the user to include the gcode file (examples included), beam information, calculation points and type, etc.
@@ -42,6 +44,8 @@ M5 - power off
 
 Beam voltage is defined by default as 100kV but can be changed in gcode_interface.py
 
+--------------------------------------------------------------------------------------------------------------------------------
+
 The raw gcode needs to be processed to be used in this code with the gcode_interface.py file and is put into the following format:
 
 t_1, x_1, vx_1, y_1 ,vy_1 , z_1 , p_1
@@ -62,3 +66,5 @@ Where xb is the beam position in the x direction and tend is the upper integrati
 For a given row in the processed gcode, it take t seconds to get to the x and y positions
 
 In the model, to get to x_n and y_n, we use the starting position from the previous position at x_n-1 and y_n-1at t_n-1 and based on vx_n, vy_n and p_n
+
+--------------------------------------------------------------------------------------------------------------------------------
