@@ -2,11 +2,11 @@
 
 GCODE
 
-The main code file is main.cpp which requires the user to include the gcode file (examples included), beam information, calculation points and type, etc.
+Specifiy the beam path file location in the setup.txt input file (located in "inputs" directory). The beam path files are located within "gcode>gcodefiles" which specifies beam power and trajectory.
 
-It is important that the processed gcode file is created with the attached Python program: gcode_interface.py located within the gcode folder. Example gcode and processed gcode can be found within the gcode folder. The processed gcode with have "laser_pos" in the name and will be in a different form than the raw gcode.
+It is important that the processed gcode file is created with the attached Python program: gcode_interface.py located within the gcode folder. Example gcode and processed gcode can be found within the gcode folder. The processed gcode will have "laser_pos" in the name and will be in a different form than the raw gcode.
 
-Here, the gcode uses current and voltage to calculate the power (relevant for EBAM processes) and G1 commands for movement. Example of raw gcode with various commands is shown below:
+Here, the gcode uses current and voltage to calculate the power (relevant for EBAM processes) and G1 commands for movement. Example of raw gcode with various commands is shown below for modulated spots in different locations:
 
  G0 X5 Y-2.5 Z0 L 0
 (Power on)
@@ -34,6 +34,7 @@ Here, the gcode uses current and voltage to calculate the power (relevant for EB
 (End)
 
 Summary of gcode commands:
+X,Y,Z - spatial positions to move to (in mm)
 L - beam current (in mA)
 F - feed rate
 G0 - rapid traverse (no power)
@@ -43,6 +44,10 @@ M3 - power on
 M5 - power off
 
 Beam voltage is defined by default as 100kV but can be changed in gcode_interface.py
+
+The traverse speed can also be adjusted based on machine specifications but does not include acceleration or deceleration information. Although the commands for beam power are given in current associated with a constant voltage, this can be used for laser processes to achieve the desired power.
+
+For example, if you specify a current of 2.5 mA (L 2.5) this would equal a nominal beam power of 250W.
 
 --------------------------------------------------------------------------------------------------------------------------------
 
@@ -55,7 +60,7 @@ t_2, x_2, vx_2, y_2 ,vy_2 , z_2 , p_2
 .
 t_n, x_n, vx_n, y_n ,vy_n , z_n , p_n
 
-Where t is the time, x, y and z are the spatial positions, vx and vy are the beam velocities in the x and y directions, respectively,in mm/s and p is the beam power in mW.
+Where t is the time, x, y and z are the spatial positions in mm, vx and vy are the beam velocities in the x and y directions, respectively, in mm/s and p is the beam power in mW.
 
 implemented in this way:
 
