@@ -1,10 +1,5 @@
 ABOUT THIS CODE PACKAGE
 
-This code is written in c++ and is best run using g++ compiler with the following dependencies:
-- Apple clang version 15.0.0 (clang-1500.1.0.2.5)
-- ensure openmp is installed
-- running version c++17
-
 There are a number of files located in this package and their descriptions are below:
 	- mat_props.h: includes the material properties
 	- poly_fit.h: curve fit for weighted average properties
@@ -25,7 +20,6 @@ There are also a number of Python files for pre- and post-processing:
 Input files located in the input folder can be chnaged in order to specify the material, beam parameters, trajectory, etc. without having to recompile the code. See the about_inputfiles.txt for more information.
 
 HOW TO RUN CODE
-
 
 It is important that the processed gcode file is created with the attached Python program: gcode.py. See the “about_gcode.txt” file for more information on this.
 
@@ -54,7 +48,7 @@ and
 
 C:\mingw64\bin
 
-To run:
+compile the code:
 
 g++ -std=c++17 -fopenmp main.cpp -o main
 
@@ -65,9 +59,12 @@ main.exe
 
 For Linux and Mac, it’s easier to get the latest gcc compilers through the terminal command prompts and get setup.
 
-To run the code, assuming the dependencies are installed, the executable can be created with the following on unix systems or equivalently:
+To run the code, assuming the dependencies are installed, the executable can be created with the following on unix systems or equivalently.
 
 Mac:
+- Apple clang version 15.0.0 (clang-1500.1.0.2.5) (or equivalent with latest gcc compiler) with openmp support
+
+compile the code:
 
 g++ -std=c++17 -Xpreprocessor -fopenmp main.cpp -o main -lomp 
 
@@ -77,11 +74,16 @@ After the executable is created, the program can be run with following inputs:
 
 Linux:
 
+Similarily, ensure the latest gcc compiler is installed with openmp support.
+
+compile the code:
+
 g++ -std=c++17 -fopenmp main.cpp -o main -lomp 
 
 After the executable is created, the program can be run with following inputs:
 
 ./main
+
 
 OUTPUT DATA
 
