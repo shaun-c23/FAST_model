@@ -1,4 +1,4 @@
----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------
 
 ABOUT THIS CODE PACKAGE
 
@@ -21,17 +21,19 @@ There are also a number of Python files for pre- and post-processing:
 
 Input files located in the input folder can be chnaged in order to specify the material, beam parameters, trajectory, etc. without having to recompile the code. See the about_inputfiles.txt for more information.
 
----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------
 
 HOW TO RUN CODE
 
-It is important that the processed gcode file is created with the attached Python program: gcode.py. See the “about_gcode.txt” file for more information on this.
+It is important that the processed gcode file is created with the attached Python program: gcode.py. See the “about_gcode.txt” file for more information on this. There are example files located within the gcode>gcodefiles directory.
 
-Beam information, material, initial temperature, gcodefile, etc., can all be changed in main.cpp file before running.
+Beam information, material, initial temperature, gcodefile, etc., can all be changed in the inputs files before running (see about_inputfiles.txt).
 
 **ensure you have version 10 or higher for gcc compiler with openmp installed**
 
----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Go into the "src" directory and compule "main.cpp" file after your system is properly setup to run this code.
+
+-------------------------------------------------------------------------------------------------------------------------------
 
 Running on Windows:
 
@@ -62,7 +64,7 @@ After the executable is created, the program can be run with following inputs:
 
 main.exe
 
----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------
 
 Running on Mac:
 
@@ -76,7 +78,7 @@ After the executable is created, the program can be run with following inputs:
 
 ./main
 
----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------
 
 Running on Linux:
 
@@ -90,7 +92,7 @@ After the executable is created, the program can be run with following inputs:
 
 ./main
 
----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------
 
 OUTPUT DATA
 
@@ -107,10 +109,10 @@ Tn, meltedn, xn, yn, zn
 
 Where time1 is the tilmestep in s for the csv file containing the calculation points for the domain, T is the temperature in ˚C, melted is if the node has exceed the solidus point (1 for melted, 0 for unmelted) and, x,y, and z, are the spatial coordinates in mm.
 
----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------
 
 DATA VISUALIZATION
 
 Software such as paraview or a Python program can be used to visualize the data. Please see example Python code (view_data.py) to visualize the data or you can convert the data use for visualization software such as paraview.
 
----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------
