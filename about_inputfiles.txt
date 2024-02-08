@@ -9,7 +9,7 @@ setup.txt:
 #Model Setup File
 
 #Meshtype information:
-    1. "static" - static grid of points (cumputationally unefficient and requires fine mesh in melt pool for accruate radiaiton)
+    1. "static" - static grid of points (computationally inefficient and requires fine mesh in melt pool for accurate radiative heat loss prediction)
     2. "dynamic" - static set of points dynmaically refined around melt pool
     3. "meltpool" - dynamic set of point just in and around the melt pool area
 
