@@ -1,0 +1,9 @@
+(Intro line) 
+ G0 X-14 Y5 Z0 L0
+(Power on)
+ M3 
+(Pass 1)
+ G1 X-6 L 6.0 F2000
+(Power off)
+ M5 
+(End)
