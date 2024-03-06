@@ -108,7 +108,7 @@ void dyn_mesh(vector<double> &xdynam,vector<double> &ydynam,vector<double> &zdyn
         }
         else{
             radius = 0.75;
-            dr = 0.05;
+            dr = MPspacing;
             int n = ceil(radius / dr);
             dr = radius / n ; 
             }
