@@ -112,11 +112,11 @@ Running on Linux:
 
 Similarily, ensure the latest gcc compiler is installed with openmp support.
 
-Follow similar steps for Mac to 
-
 compile the code:
 
 g++ -std=c++17 -fopenmp main.cpp -o main -lomp 
+
+Follow similar steps to Mac for troubleshooting if you have issues compiling.
 
 After the executable is created, the program can be run with following inputs:
 
