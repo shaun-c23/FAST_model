@@ -70,14 +70,27 @@ Running on Mac:
 
 - Apple clang version 15.0.0 (clang-1500.1.0.2.5) (or equivalent with latest gcc compiler) with openmp support
 
+If you do not have openmp installed follow these steps:
+
+Install homebrew:
+
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+
+Follow steps from terminal to add home-brew to your PATH
+
+Run:  brew install llvm libomp
+
 compile the code:
 
 g++ -std=c++17 -Xpreprocessor -fopenmp main.cpp -o main -lomp 
 
-After the executable is created, the program can be run with following inputs:
+If you have problems compile the code because of -fopenmp or -lomp then try to compile with the added flag to specify the path:  
+
+g++ -std=c++17 -Xpreprocessor -fopenmp main.cpp -o main -L/usr/local/opt/libomp/lib -lomp
+
+After the executable is created, the program can be run with the following:
 
 ./main
-
 -------------------------------------------------------------------------------------------------------------------------------
 
 Running on Linux:
