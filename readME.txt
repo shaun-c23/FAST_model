@@ -84,7 +84,7 @@ compile the code:
 
 g++ -std=c++17 -Xpreprocessor -fopenmp main.cpp -o main -lomp 
 
-If you have problems compile the code because of -fopenmp or -lomp then try to compile with the added flag to specify the path:  
+If you have problems compiling the code because of -fopenmp or -lomp then try to compile with the added flag to specify the path:  
 
 g++ -std=c++17 -Xpreprocessor -fopenmp main.cpp -o main -L/usr/local/opt/libomp/lib -lomp
 
