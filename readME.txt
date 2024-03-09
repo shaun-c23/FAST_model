@@ -68,7 +68,7 @@ main.exe
 
 Running on Mac:
 
-- Apple clang version 15.0.0 (clang-1500.1.0.2.5) (or equivalent with latest gcc compiler) with openmp support
+Ensure you have Xcode and the command line tools installed on your Mac.
 
 If you do not have openmp installed follow these steps:
 
@@ -96,6 +96,8 @@ After the executable is created, the program can be run with the following:
 Running on Linux:
 
 Similarily, ensure the latest gcc compiler is installed with openmp support.
+
+Follow similar steps for Mac to 
 
 compile the code:
 
