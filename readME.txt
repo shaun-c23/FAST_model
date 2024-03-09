@@ -84,7 +84,21 @@ compile the code:
 
 g++ -std=c++17 -Xpreprocessor -fopenmp main.cpp -o main -lomp 
 
-If you have problems compiling the code because of -fopenmp or -lomp then try to compile with the added flag to specify the path:  
+If you have problems compiling the code because of -fopenmp or -lomp then try the following:
+
+Update your shell profile file (~/.bash_profile for Bash or ~/.zshrc for Zsh) to include the Homebrew Clang directory at the beginning of the PATH. Add the following line:
+
+nano ~/.bash_profile # or ~/.zshrc for Zsh users
+
+Add the following lines at the end of the file:
+
+export PATH="/usr/local/opt/llvm/bin:$PATH"
+export PATH="/usr/local/opt/llvm/bin:$PATH"
+
+Save and exit and then run:
+source ~/.bash_profile   # or source ~/.zshrc for Zsh users
+
+Now  specify the library path explicitly using -L to compile:
 
 g++ -std=c++17 -Xpreprocessor -fopenmp main.cpp -o main -L/usr/local/opt/libomp/lib -lomp
 
