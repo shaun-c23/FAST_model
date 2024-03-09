@@ -93,7 +93,8 @@ nano ~/.bash_profile # or ~/.zshrc for Zsh users
 Add the following lines at the end of the file:
 
 export PATH="/usr/local/opt/llvm/bin:$PATH"
-export PATH="/usr/local/opt/llvm/bin:$PATH"
+export LDFLAGS="-L/usr/local/opt/libomp/lib"
+export CPPFLAGS="-I/usr/local/opt/libomp/include"
 
 Save and exit and then run:
 source ~/.bash_profile   # or source ~/.zshrc for Zsh users
