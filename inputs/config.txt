@@ -1,6 +1,6 @@
 #Model Setup File
 
-TimeStep = 0.002
+TimeStep = 0.01
 CoolingTime = 0
 
 
