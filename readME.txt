@@ -29,7 +29,7 @@ It is important that the processed gcode file is created with the attached Pytho
 
 Beam information, material, initial temperature, gcodefile, etc., can all be changed in the inputs files before running (see about_inputfiles.txt).
 
-**ensure you have version 10 or higher for gcc compiler with openmp installed**
+**ensure you have version 10 or higher for gcc compiler using c++17 or higher with openmp installed**
 
 Go into the "src" directory and compule "main.cpp" file after your system is properly setup to run this code.
 
