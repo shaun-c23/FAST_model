@@ -52,7 +52,7 @@ Add to your environment variables:
 
 C:\msys64\ucrt64\bin
 
-and
+C:\msys64\usr\bin
 
 C:\mingw64\bin
 
