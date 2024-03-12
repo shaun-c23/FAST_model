@@ -123,7 +123,7 @@ int main(int argc, char* argv[]){
     fs::path data_loc = FilePath / data_dir;
 
     //executes code
-    runcode(baseT, ambient_temp, sig, eta, no_cores,domain,gcodefile,data_loc,time_freq,ex_time,type,FilePath + configPath.Material,MPparams,modelMPdepth,modelBC,BCvals,delta);
+    runcode(baseT, ambient_temp, sig, eta, no_cores,domain,gcodefile,data_loc.string(),time_freq,ex_time,type,FilePath + configPath.Material,MPparams,modelMPdepth,modelBC,BCvals,delta);
     
     auto stop_time = std::chrono::high_resolution_clock::now();
     auto duration = std::chrono::duration_cast<std::chrono::seconds>(stop_time - start_time);
