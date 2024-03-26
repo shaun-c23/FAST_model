@@ -61,7 +61,7 @@ double integrand_dim(double prefa, double pwr, double pmlt,double sp, double X,d
     double phix,phiy,phiz;
     phix = 12*alpha*(send-sp)+pow(sig,2);
     phiy = phix;
-    phiz = 12*alpha*(send-sp)+pow(1e-6,2);
+    phiz = 12*alpha*(send-sp)+pow(delta,2);
 
     double spp,Xb,Yb,Zb;
     double Xb1, Xb2, Yb1, Yb2, Zbot;
