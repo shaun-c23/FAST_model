@@ -1,7 +1,9 @@
 #Model Setup File
 
-TimeStep = 0.01
-CoolingTime = 0
+TimeStep = 0.001
+CoolingTime = 0.0
+
+PrintNframe = 5;
 
 
 InitialTemp = 250
@@ -10,7 +12,7 @@ AmbientTemp = 30
 
 Efficiency = 0.72
 Sigma = 0.145
-BeamDepth = 0.1
+BeamDepth = 0.0
 
 MaxThreads = 6
 
