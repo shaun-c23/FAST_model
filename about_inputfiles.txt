@@ -33,6 +33,8 @@ config.txt:
 TimeStep = 0.01 #timstep frequency in s
 CoolingTime = 0 #extra or time in s to allow to cool beyond time in gcode
 
+PrintNframe = 5; #Every N frame number to save
+
 InitialTemp = 250 #T0 or preheat temperature in ˚C
 AmbientTemp = 30 #ambient temperature for radiation in ˚C
 
