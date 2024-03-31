@@ -111,7 +111,7 @@ void linspace_s(double a, double b, int num, vector<double> &arr)
 }
 
 
-void runcode(double baseT, double ambient_temp, double sig, double eta, int nthreads, vector< vector<double> > domain,string gcodefile, string datapath, double time_freq, double ex_time, string type, string mat,vector<double> MPparams, bool modelMPdepth,bool modelBC, vector<double> BCvals, double delta){
+void runcode(double baseT, double ambient_temp, double sig, double eta, int nthreads, vector< vector<double> > domain,string gcodefile, string datapath, double time_freq, double ex_time, string type, string mat,vector<double> MPparams, bool modelMPdepth,bool modelBC, vector<double> BCvals, double delta, int everyNframes){
 
     static double pi = M_PI; //set pi value
 
@@ -608,29 +608,30 @@ void runcode(double baseT, double ambient_temp, double sig, double eta, int nthr
     string rtn = datapath +'/' + filename + extension;
     ofstream myfile(rtn);
     
-
     for (int i = 0 ; i < Tatdt.size() ; i ++){
 
         if (type != "points"){
             myfile << meltedtime[i] << ',' << meltednodes[i][0] << ',' << meltednodes[i][1] << ',' << MPcoords[i][0] << ',' << MPcoords[i][1] << ',' << MPcoords[i][2] << endl;
         }
-        
-        stringstream ss;
-        ss<<i;  
-        string s;  
-        ss>>s;  
-        string filename = "snap.";
-        string filenum = s;
-        string extension =  ".csv";
-        string rtn1 = datapath +'/' + filename + filenum + extension;
-        ofstream myfile1(rtn1);
-        myfile1 << meltedtime[i] << endl;
-        int vsize1 = Tatdt[i].size();
-        for (int n=0; n<vsize1; n++)
-        {   
-            myfile1 << Tatdt[i].at(n) <<','<< MPatdt[i].at(n) << ','<< xatdt[i].at(n) << ','<< yatdt[i].at(n)<< ','<< zatdt[i].at(n)<<endl;
+
+        if (i%everyNframes == 0){
+            stringstream ss;
+            ss<<i;  
+            string s;  
+            ss>>s;  
+            string filename = "snap.";
+            string filenum = s;
+            string extension =  ".csv";
+            string rtn1 = datapath +'/' + filename + filenum + extension;
+            ofstream myfile1(rtn1);
+            myfile1 << meltedtime[i] << endl;
+            int vsize1 = Tatdt[i].size();
+            for (int n=0; n<vsize1; n++)
+            {   
+                myfile1 << Tatdt[i].at(n) <<','<< MPatdt[i].at(n) << ','<< xatdt[i].at(n) << ','<< yatdt[i].at(n)<< ','<< zatdt[i].at(n)<<endl;
+            }
+
         }
-        
         
     }
 

@@ -65,6 +65,7 @@ struct ConfigVars {
     double Sigma;
     double Delta;
     double TimeStep;
+    double everyNframes;
 };
 
 struct ConfigMPpoints {
@@ -229,6 +230,7 @@ void vars(string FilePath, string fileName, ConfigVars &configVars){
         //std::string key = pair.first;
         double value = pair.second;
         values.push_back(value);
+        cout << value << endl;
      }
 
     configVars.AmbientTemp = values[0];
@@ -237,8 +239,10 @@ void vars(string FilePath, string fileName, ConfigVars &configVars){
     configVars.Efficiency = values[3];
     configVars.InitialTemp = values[4];
     configVars.MaxThreads = int(values[5]);
-    configVars.Sigma = values[6];
-    configVars.TimeStep = values[7];
+    configVars.everyNframes = values[6];
+    configVars.Sigma = values[7];
+    configVars.TimeStep = values[8];
+
 }
 
 void BCs(string FilePath, string fileName, ConfigBC &configBCs, vector<double> &values){
