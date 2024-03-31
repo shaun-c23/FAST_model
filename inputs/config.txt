@@ -1,6 +1,6 @@
 #Model Setup File
 
-TimeStep = 0.001
+TimeStep = 0.01
 CoolingTime = 0.0
 
 PrintNframe = 5;
