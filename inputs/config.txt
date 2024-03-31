@@ -5,10 +5,8 @@ CoolingTime = 0.0
 
 PrintNframe = 5;
 
-
 InitialTemp = 250
 AmbientTemp = 30
-
 
 Efficiency = 0.72
 Sigma = 0.145
