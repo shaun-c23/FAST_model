@@ -100,6 +100,7 @@ int main(int argc, char* argv[]){
     double sig = setupVars.Sigma; //Gaussian beam spot size in mm
     double delta = setupVars.Delta;
     double ambient_temp = setupVars.AmbientTemp; //ambient temperature for radiation
+    int everyNframes = setupVars.everyNframes;
 
 
     //melt pool calculation points parameters
@@ -123,7 +124,7 @@ int main(int argc, char* argv[]){
     fs::path data_loc = FilePath / data_dir;
 
     //executes code
-    runcode(baseT, ambient_temp, sig, eta, no_cores,domain,gcodefile,data_loc.string(),time_freq,ex_time,type,FilePath + configPath.Material,MPparams,modelMPdepth,modelBC,BCvals,delta);
+    runcode(baseT, ambient_temp, sig, eta, no_cores,domain,gcodefile,data_loc.string(),time_freq,ex_time,type,FilePath + configPath.Material,MPparams,modelMPdepth,modelBC,BCvals,delta,everyNframes);
     
     auto stop_time = std::chrono::high_resolution_clock::now();
     auto duration = std::chrono::duration_cast<std::chrono::seconds>(stop_time - start_time);
