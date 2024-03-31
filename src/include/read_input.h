@@ -230,7 +230,6 @@ void vars(string FilePath, string fileName, ConfigVars &configVars){
         //std::string key = pair.first;
         double value = pair.second;
         values.push_back(value);
-        cout << value << endl;
      }
 
     configVars.AmbientTemp = values[0];
