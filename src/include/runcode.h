@@ -237,8 +237,12 @@ void runcode(double baseT, double ambient_temp, double sig, double eta, int nthr
     int cnt = 0;
     for (int j = 0; j < numFrames; j++){
     
-        if (j%50 == 0){
-            cout<<send<<endl;
+        double percentage = static_cast<double>(send) / s2 * 100;
+        int milestone = static_cast<int>(percentage / 10);
+        static int lastMilestonePrinted = -1;
+        if (milestone > lastMilestonePrinted) {
+            std::cout << "Progress: " << milestone * 10 << "%" << std::endl;
+            lastMilestonePrinted = milestone;
         }
 
         int_points.clear();
