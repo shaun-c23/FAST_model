@@ -3,7 +3,7 @@
 TimeStep = 0.01
 CoolingTime = 0.0
 
-PrintNframe = 5;
+PrintNframe = 5
 
 InitialTemp = 250
 AmbientTemp = 30
