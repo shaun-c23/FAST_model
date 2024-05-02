@@ -283,19 +283,23 @@ void runcode(double baseT, double ambient_temp, double sig, double eta, int nthr
             ux = spp+dspp;
             lx = spp;
 
-		    if (ux > s[s.size()-1]){
-                ind = s.size()-1;
+            if (ux > s.back()) {
+            ind = s.size() - 1;
+            } 
+            else {
+                int lower_bound = 0;
+                int upper_bound = s.size() - 1;
+                while (lower_bound < upper_bound) {
+                    int mid = (lower_bound + upper_bound) / 2;
+                    if (s[mid] < ux) {
+                        lower_bound = mid + 1;
+                    } 
+                    else {
+                        upper_bound = mid;
+                    }
+                }
+                ind = upper_bound;
             }
-
-		    else if (ux > s[ind+1]){
-			    while (ux > s[ind]){
-                    ind+=1;
-			    }
-		    }
-
-		    else if (ux > s[ind]){
-		        ind +=1;
-		    }
 
             if (type != "points"){
 
