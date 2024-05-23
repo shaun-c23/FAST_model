@@ -99,7 +99,7 @@ meltT = {1625} #liquidus temperature for material in ˚C
 boundaryconditions.txt:
 
 #Boundary Conditions File
-This is used for a square domain to apply adiabatic BC at the locations
+**NOTE** This is only applicable for symmetric planar geometries (across x and y axes) (e.g. a square) to apply adiabatic BC at the locations specified.
 
 x1 = -20 #boundary for first mirror image
 x2 = 30 #boundary for second mirror image
