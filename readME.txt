@@ -116,7 +116,7 @@ compile the code:
 
 g++ -std=c++17 -fopenmp main.cpp -o main -lomp 
 
-Follow similar steps to Mac for troubleshooting if you have issues compiling.
+Sometimes you may not need -lomp, so if issues try removing that and trying again. Follow similar steps to Mac for troubleshooting if you have issues compiling.
 
 After the executable is created, the program can be run with following inputs:
 
