@@ -228,6 +228,9 @@ void runcode(double baseT, double ambient_temp, double sig, double eta, int nthr
         }
         check+=1;
     }
+    if (V < 1){
+	V = 1;
+    }
 
     int numFrames = s2/time_freq + 1;
     double startValue = 0.0;
@@ -534,7 +537,7 @@ void runcode(double baseT, double ambient_temp, double sig, double eta, int nthr
             tempmelted.reserve(2);
             nodelengths = tempT.size();
 
-            if (nodelengths > 1){
+            if (nodelengths > 3){
                 tempmelted.push_back(nodelengths * rads[1] * rads[2]); //calculate melt pool area
                 double maxz = *max_element(currz.begin(), currz.end());
                 double minz = *min_element(currz.begin(), currz.end());
