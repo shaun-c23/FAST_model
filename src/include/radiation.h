@@ -74,82 +74,69 @@ double calculate_rad(vector <double> &T, double x_node_spacing, double y_node_sp
         sum += ((pow(x + 273.15, 4) - pow(ambient_temp + 273.15, 4)));
     }
 
-    double rad_pow =  Aelem * emissivity * boltz * sum / pow(1000.0, 2);
-    return rad_pow;
+    return Aelem*boltz* sum / pow(1000.0, 2);
 }
 
-double iter_radiation(vector<double> tempT, double xnodes, double ynodes, double emis, double ambient_temp, double baseT, double eta, double power, double radloss) {
-    double oldflux, newflux, flux, pmult;
+double iter_radiation(vector<double> tempT, double xnodes, double ynodes,double emis, double ambient_temp,double baseT, double eta, double power,double radloss){
+    double oldflux;
+    double newflux;
+    double flux, pmult;
     double rad = 0;
 
-    int max_iter = 100; // max number of iterations to convergence
-    double converg_thresh = 0.5; // convergence threshold
+    int max_iter = 100; //max number of iterations to convergence
+    double converg_thresh = 0.5; //convergence threshold
                 
     vector<double> newT(tempT.size(), 0);
     vector<double> newT2(tempT.size(), 0);
 
     double scaler = 0.95;
-    flux = calculate_rad(tempT, xnodes, ynodes, emis,ambient_temp);
+    flux = calculate_rad(tempT, xnodes, ynodes,emis,ambient_temp);
     oldflux = flux;
     newflux = flux;
 
-    double target_flux = (power / 1000) * eta * 0.67;
+    double startflux = flux;
 
-    // Adjust based on previous radiation loss
-    if (radloss > 0) {
-        newflux = (flux + radloss) / 2.0; // Smoothing between flux and previous radloss
-    }
+    
 
-    // Scaling down if flux exceeds the target value
-    if (newflux >= target_flux && power / 1000 != 0) {
-        while (newflux >= target_flux) {
-            pmult = scaler;  // scales temperature field down
+    if (newflux >= (power/1000)*eta*(0.67) && power/1000 != 0){
+        while (newflux >= (power/1000)*eta*(0.67)){
+            pmult = scaler;//scales temperature field down
             getnewT(pmult, baseT, tempT, newT);
-            newflux = calculate_rad(newT, xnodes, ynodes, emis,ambient_temp);
-            scaler -= 0.05;
-            if (scaler < 0.1) { // Prevents over-scaling
-                scaler = 0.1;
-                break;
-            }
+            newflux = calculate_rad(newT, xnodes, ynodes,emis,ambient_temp);
+            scaler -=0.01;
         }
-
-    } else {
-        // Scaling using flux and previous radloss
-        pmult = getpmult((flux * 0.67 + radloss) / 2.0, target_flux);
-        getnewT(pmult, baseT, tempT, newT);
-        newflux = calculate_rad(newT, xnodes, ynodes, emis,ambient_temp);
     }
 
-
+    
+    else{
+        pmult = getpmult(radloss, power/1000 * eta);
+        getnewT(pmult, baseT, tempT, newT);
+        newflux = calculate_rad(newT, xnodes, ynodes,emis,ambient_temp);
+    }
+    
 
     bool track = true;
-    while (track) {
-        for (int iter = 0; iter < max_iter; ++iter) {
-            double pmultnew = getpmult(newflux, target_flux);
+    while (track){
+        for (int iter = 0; iter < max_iter; ++iter){
+            double pmultnew = getpmult(newflux, power/1000 * eta);
             getnewT(pmultnew, baseT, newT, newT2);
-            newflux = calculate_rad(newT2, xnodes, ynodes, emis,ambient_temp);
+            newflux = calculate_rad(newT2, xnodes, ynodes,emis,ambient_temp);
                             
             if (abs(oldflux - newflux) < converg_thresh) {
-                // Convergence reached
+                //cout << "Converged after " << iter + 1 << " iterations - " << "flux = " << newflux << endl;
                 rad = newflux;
                 track = false;
                 break;
             }
             oldflux = newflux;
         }
-        
-        // If not converged within max iterations, retry with smaller starting field
-        if (track) {
+        // if not converged within max iterations, try again with smaller starting field
+        if (track == true){
             pmult = scaler;
             getnewT(pmult, baseT, tempT, newT);
-            newflux = calculate_rad(newT, xnodes, ynodes, emis,ambient_temp);
-            scaler -= 0.05;
-            if (scaler < 0.1) {
-                scaler = 0.1;
-                break;
-            }
+            newflux = calculate_rad(newT, xnodes, ynodes,emis,ambient_temp);
+            scaler -=0.01;
         }
     }
-    
-    return rad;
+    return rad*emis;
 }
