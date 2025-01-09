@@ -68,7 +68,7 @@ double Pn_prime(double x, int n){
 
 
 void findRoots(int n, vector<double> &temp_roots, vector<double> &temp_weights){
-    float x0, x1, f0, f1, g0, e, Pi;
+    float x0, x1, f0, f1, g0, e;
 	int step = 1, N;
     N = 100;
     e = 1e-5;
