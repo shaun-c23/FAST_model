@@ -1,0 +1,23 @@
+#Model Setup File
+
+Config = inputs/config.txt
+Material = inputs/materials/Ti64.txt
+Domain = inputs/domain.txt
+Meltpool = inputs/meltpool_points.txt
+
+BeamPath1 = gcode/gcodefiles/continu_500W.txt
+BeamPath2 = gcode/gcodefiles/continu_500W-translated.txt
+BeamPath3 = gcode/gcodefiles/continu_500W-translated2.txt
+BeamPath4 = gcode/gcodefiles/continu_500W-translated3.txt
+BeamPath5 = gcode/gcodefiles/continu_500W-translated4.txt
+BeamPath6 = gcode/gcodefiles/continu_500W-translated5.txt
+
+BC = inputs/boundaryconditions.txt
+Points = inputs/static_points.txt
+DataPath = data/test/
+
+Meshtype = static
+Meltpooldepth = false
+BoundaryConditions = false
+StaticPoints = true
+MultiBeamON = false
