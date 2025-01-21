@@ -115,7 +115,7 @@ double integrand_dim(double prefa, double pwr, double pmlt,double sp, double X,d
         Zbot = BCvals[4];
     
         return prefa*pwr*pmlt*(1/(sqrt(phix*phiy*phiz)))*(exp(-3*pow((X-Xb),2)/phix-3*pow((Y-Yb),2)/phiy-3*pow((Z-Zb),2)/phiz)
-                                                           +exp(-3*pow((X-Xb),2)/phix-3*pow((Y-Yb),2)/phiy-3*pow((Z-Zb)-Zbot*2,2)/phiz)
+                                                           +exp(-3*pow((X-Xb),2)/phix-3*pow((Y-Yb),2)/phiy-3*pow((Z+Zb)-Zbot*2,2)/phiz)
                                                            +exp(-3*pow((X-Xb),2)/phix-3*pow((Y-Yb1),2)/phiy-3*pow((Z-Zb),2)/phiz)
                                                            +exp(-3*pow((X-Xb),2)/phix-3*pow((Y-Yb2),2)/phiy-3*pow((Z-Zb),2)/phiz)
                                                            +exp(-3*pow((X-Xb1),2)/phix-3*pow((Y-Yb),2)/phiy-3*pow((Z-Zb),2)/phiz)
