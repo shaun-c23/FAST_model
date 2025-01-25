@@ -585,8 +585,8 @@ void runcode(double baseT, double ambient_temp, double sig, double eta, int nthr
         }
         else{
             rads.push_back(0);
-            rads.push_back((domain[0][domain[0].size()-1]- domain[0][0])/(domain[0].size()-1));
-            rads.push_back((domain[1][domain[1].size()-1]- domain[1][0])/(domain[1].size()-1));
+            rads.push_back(fabs(domain[0][domain[0].size()-1]- domain[0][0])/(domain[0].size()-1));
+            rads.push_back(fabs(domain[1][domain[1].size()-1]- domain[1][0])/(domain[1].size()-1));
 
         }
 
