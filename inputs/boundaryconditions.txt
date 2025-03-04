@@ -1,0 +1,8 @@
+#Boundary Conditions File
+
+x1 = -20
+x2 = 30
+y1 = -20
+y2 = 30
+zbot = -1
+
