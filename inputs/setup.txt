@@ -14,7 +14,7 @@ BeamPath6 = gcode/gcodefiles/empty
 
 BC = inputs/boundaryconditions.txt
 Points = inputs/static_points.txt
-DataPath = data/test/
+DataPath = data/
 
 Meshtype = dynamic
 Meltpooldepth = false
