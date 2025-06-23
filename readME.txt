@@ -2,6 +2,10 @@
 
 ABOUT THIS CODE PACKAGE
 
+## License and Usage
+This code is licensed for non-commercial academic use only.
+Redistribution is permitted under the terms in LICENSE.
+
 There are a number of files located in this package and their descriptions are below:
 	- mat_props.h: includes the material properties
 	- poly_fit.h: curve fit for weighted average properties
