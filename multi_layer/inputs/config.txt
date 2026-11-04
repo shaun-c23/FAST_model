@@ -1,0 +1,23 @@
+#Model Setup File
+
+TimeStep = 0.1
+CoolingTime = 50
+
+PrintNframe = 1
+
+InitialTemp = 22
+AmbientTemp = 30
+
+Efficiency = 0.38
+Sigma = 1.8
+BeamDepth = 0
+
+MaxThreads = 6
+
+#Layer removal parameters
+
+LayRemove = true
+CorrTfield = true
+SetLayers = true
+nLayers = 10
+CoolThresh = 0.1

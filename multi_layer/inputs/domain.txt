@@ -1,0 +1,14 @@
+# Domain Configuration File
+
+# Grid dimensions
+nx = 100
+ny = 100
+nz = 1
+
+# Domain boundaries
+x1 = 0
+x2 = 40
+y1 = -10
+y2 = 10
+z1 = 0
+z2 = 0

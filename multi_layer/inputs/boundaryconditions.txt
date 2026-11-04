@@ -1,0 +1,7 @@
+#Boundary Conditions File
+
+x1 = -25
+x2 = 25
+y1 = -25
+y2 = 25
+zbot = -8

@@ -1,0 +1,23 @@
+#Model Setup File
+
+Config = inputs/config.txt
+Material = inputs/materials/316L.txt
+Domain = inputs/domain.txt
+Meltpool = inputs/meltpool_points.txt
+
+BeamPath1 = gcode/gcodefiles/laser_poscube-20tracks-0sdwell-6sdwell2-newlayh.txt
+BeamPath2 = gcode/gcodefiles/
+BeamPath3 = gcode/gcodefiles/
+BeamPath4 = gcode/gcodefiles/
+BeamPath5 = gcode/gcodefiles/
+BeamPath6 = gcode/gcodefiles/
+
+BC = inputs/boundaryconditions.txt
+Points = inputs/static_points.txt
+DataPath = data/0sdwell-6sdwell2-newlayh/
+
+Meshtype = points
+Meltpooldepth = false
+BoundaryConditions = false
+StaticPoints = false
+MultiBeamON = false
