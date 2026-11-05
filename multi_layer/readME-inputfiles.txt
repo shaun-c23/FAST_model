@@ -67,6 +67,13 @@ BeamDepth = 0 #beam penetration depth in mm
 
 MaxThreads = 6 #number of CPU cores to run on
 
+#Layer removal parameters
+
+LayRemove = true #true turns layer removal ON, false turns layer removal OFF
+CorrTfield = true #this will correct the thermal field when LayRemove is ON
+SetLayers = true #if SetLayer = true, you can set the number (nLyers) to be kept in the integral. False for dynamic threshold -- recommended since layer is removed once the thermal contribution of that layer is small (based on CoolThresh)
+nLayers = 10 #number of layer to be kept in the integral (only keeps 10 layers
+CoolThresh = 0.1 #sets the threshold value for when a layer should be removed (lower values keep more layers but increase accuracy)
 -------------------------------------------------------------------------------------------------------------------------------
 
 domain.txt:
