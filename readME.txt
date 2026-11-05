@@ -52,6 +52,10 @@ pacman -S mingw-w64-ucrt-x86_64-gcc
 
 pacman -S mingw-w64-x86_64-openmp
 
+If you want to run multi_layer, also add:
+
+pacman -S mingw-w64-ucrt-x86_64-opencv mingw-w64-ucrt-x86_64-pkgconf
+
 Add to your environment variables:
 
 C:\msys64\ucrt64\bin
@@ -60,9 +64,13 @@ C:\msys64\usr\bin
 
 C:\mingw64\bin
 
-compile the code:
+compile the code (single_layer):
 
 g++ -std=c++17 -fopenmp main.cpp -o main
+
+or compile for multi_layer:
+
+g++ -std=c++17 -fopenmp main.cpp $(pkg-config --cflags --libs opencv4) -o main.exe
 
 After the executable is created, the program can be run with following inputs:
 
@@ -84,9 +92,20 @@ Follow steps from terminal to add home-brew to your PATH
 
 Run:  brew install llvm libomp
 
-compile the code:
+For multi_layer also add:
+
+brew install opencv pkg-config
+
+compile the code (single_layer):
 
 g++ -std=c++17 -Xpreprocessor -fopenmp main.cpp -o main -lomp 
+
+or for multi_layer, compile with:
+
+g++ -std=c++17 -Xpreprocessor -fopenmp main.cpp \
+    $(pkg-config --cflags --libs opencv4) \
+    -L"$(brew --prefix libomp)/lib" -lomp \
+    -o main
 
 If you have problems compiling the code because of -fopenmp or -lomp then try the following:
 
@@ -114,11 +133,21 @@ After the executable is created, the program can be run with the following:
 
 Running on Linux:
 
-Similarily, ensure the latest gcc compiler is installed with openmp support.
+Similarly as mac, ensure the latest gcc compiler is installed with openmp support.
 
-compile the code:
+Install packages:
+sudo apt update
+sudo apt install build-essential libopencv-dev libomp-dev pkg-config
+
+compile the code (single_layer):
 
 g++ -std=c++17 -fopenmp main.cpp -o main
+
+or for multi_layer:
+
+g++ -std=c++17 -fopenmp main.cpp \
+    $(pkg-config --cflags --libs opencv4) \
+    -o main
 
 Sometimes you may need -lomp, so if issues try adding that and trying again. Follow similar steps to Mac for troubleshooting if you have issues compiling.
 
