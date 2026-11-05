@@ -2,6 +2,8 @@
 
 There are several input files located in the input folder necessary for the model.
 
+More information on multi-layer implementation for the FAST model: 10.1016/j.apm.2025.116690
+
 -------------------------------------------------------------------------------------------------------------------------------
 
 setup.txt:
